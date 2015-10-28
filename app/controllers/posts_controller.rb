@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :confirm_logged_in
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show]
+  before_action :set_post_for_edit, only: [ :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -92,6 +93,14 @@ class PostsController < ApplicationController
       else
         @post = current_user.posts.find_by(id: params[:id])
         @post = Post.where(id: params[:id]).where(public: true).first unless @post
+      end
+    end
+
+    def set_post_post_for_edit
+      if current_user.admin?
+        @post = Post.find(params[:id])
+      else
+        @post = current_user.posts.find_by(id: params[:id])
       end
     end
 
