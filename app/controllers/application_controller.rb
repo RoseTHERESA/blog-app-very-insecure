@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  #protect_from_forgery with: :exception
+
+  #this one was too easy to find. UNCOMMENTED THE FOLLWING LINE
+  protect_from_forgery with: :exception
 
   def confirm_logged_in
     unless session[:user_id] and current_user
