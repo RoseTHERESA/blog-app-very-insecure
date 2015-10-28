@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+cclass UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -70,6 +70,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_digest, :admin)
-    end
-end
+       params.require(:user).permit(:email, :password)  #removed password_digest and admin
+    end    
+
